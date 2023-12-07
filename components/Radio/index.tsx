@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Radio, Space } from 'antd'
+import { Row, Col, Radio, Space, type RadioChangeEvent } from 'antd'
 import Label from "../Label";
 
 type TRadioOption = {
@@ -13,10 +13,16 @@ type TRadio = {
   }
   direction?: 'horizontal' | 'vertical'
   options: TRadioOption[]
+  defaultValue?: string
+  onChange?: (value: string) => void
 }
 
 const RadioCus = (props: TRadio): JSX.Element => {
   const { label, options } = props
+
+  const onChangeRadio = (e: RadioChangeEvent) => {
+    props.onChange && props.onChange(e.target.value)
+  }
   return (
     <div className={'radio-pane'}>
       <Row gutter={[0, 8]}>
@@ -24,7 +30,11 @@ const RadioCus = (props: TRadio): JSX.Element => {
           <Label textColor={'black-primary'}>{label.text}</Label>
         </Col>
         <Col xs={24}>
-          <Radio.Group className={'radio-component'}>
+          <Radio.Group
+            className={'radio-component'}
+            defaultValue={props.defaultValue}
+            onChange={onChangeRadio}
+          >
             <Space size={8} direction={props.direction || 'vertical'}>
               {
                 options.map(opt => {
