@@ -39,7 +39,7 @@ const RadioCus = (props: TRadio): JSX.Element => {
               {
                 options.map(opt => {
                   return (
-                    <Radio value={opt.value}>{opt.label}</Radio>
+                    <Radio value={opt.value} key={opt.value}>{opt.label}</Radio>
                   )
                 })
               }
