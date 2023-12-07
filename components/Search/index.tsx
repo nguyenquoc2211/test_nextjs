@@ -39,7 +39,7 @@ const Search = (props: TSearch): JSX.Element => {
     setValues(vals)
   }
 
-  const valuesMemo = useMemo(() => {
+  const valuesMemo = useMemo<any>(() => {
     if (type === 'single') {
       if (values && values.length > 0) {
         return values[0].value
