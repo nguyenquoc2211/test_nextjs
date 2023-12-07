@@ -22,6 +22,16 @@ const Heading = (props: THeading): JSX.Element => {
             <h1 className={textClassName ?? 'black-primary'}>{props.children}</h1>
           </div>
         )
+      case 1:
+        return (
+          <div className={classNames({
+            'heading': true,
+            [`heading-${level}`]: true,
+            [`${className}`]: !!className
+          })}>
+            <h1 className={textClassName ?? 'black-primary'}>{props.children}</h1>
+          </div>
+        )
       default:
         return <React.Fragment />
     }
